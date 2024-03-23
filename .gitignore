@@ -4,6 +4,9 @@
 # it's easier to ignore whole .idea directory
 .idea
 
+### vite
+dist/
+
 ### Node.js custom template
 
 ### VisualStudioCode template

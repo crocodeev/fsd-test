@@ -6,6 +6,9 @@ import { packageDirectorySync } from 'pkg-dir'
 
 const packageRoot = packageDirectorySync()
 
+console.log(path.resolve(packageRoot, './src'));
+
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
@@ -14,4 +17,5 @@ export default defineConfig({
       'src': path.resolve(packageRoot, './src'),
     },
   },
+  base: '/fsd-test/'
 })
