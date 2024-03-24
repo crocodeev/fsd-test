@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-
+import { paths } from './src/shared/api/paths'
 import path from 'node:path'
 import { packageDirectorySync } from 'pkg-dir'
 
@@ -18,5 +18,5 @@ export default defineConfig({
     },
   },
   //github page setting
-  base: '/fsd-test/'
+  base: paths.home
 })
