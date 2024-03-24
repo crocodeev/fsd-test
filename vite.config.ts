@@ -17,5 +17,6 @@ export default defineConfig({
       'src': path.resolve(packageRoot, './src'),
     },
   },
+  //github page setting
   base: '/fsd-test/'
 })
