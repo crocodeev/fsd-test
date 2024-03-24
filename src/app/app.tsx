@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from 'react'
-import { HomePage } from 'src/pages/home'
+import Router from './router'
 
 
 export const App: FunctionComponent = () => (
   <div>
-    <HomePage />
+    <Router />
   </div>
 )

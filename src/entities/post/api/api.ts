@@ -13,7 +13,16 @@ export const postApi = createApi({
                     _limit: limit,
                     _start: offset,
                 }
-            })
+            }),
+            serializeQueryArgs: ({ endpointName }) => {
+                return endpointName;
+            },
+            merge: (currentCache, newItems) => {
+                currentCache.push(...newItems);
+            },
+            forceRefetch({ currentArg, previousArg }) {
+                return currentArg !== previousArg;
+            }
         })
     })
 })

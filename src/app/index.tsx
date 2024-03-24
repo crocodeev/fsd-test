@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { App } from './app'
 import { Provider } from 'react-redux'
 import store from './store'
+import '../app/styles/global.css'
 
 const reactRoot = createRoot(
   document.getElementById('root')!,
@@ -11,7 +12,7 @@ const reactRoot = createRoot(
 reactRoot.render(
   <React.StrictMode>
     <Provider store={store}>
-    <App />
+      <App />
     </Provider>
   </React.StrictMode>
 )

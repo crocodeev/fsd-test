@@ -10,4 +10,6 @@ const store = configureStore({
     .concat(postApi.middleware),
 })
 
+export type TRootState = ReturnType<typeof store.getState>
+
 export default store
