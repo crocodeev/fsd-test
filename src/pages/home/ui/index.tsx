@@ -30,7 +30,7 @@ export const HomePage = () => {
         console.log(event.visibleStopIndex);
         
       
-        if(event.visibleStopIndex === data?.length - 1){
+        if(data && event.visibleStopIndex === data?.length - 1){
             console.log("fire");
             setOffset(offset + 10);
         }
@@ -39,7 +39,7 @@ export const HomePage = () => {
     return(
         <ul style={{ width: "100%", height: "800px", display: "flex", position: "absolute"}}>
         <AutoSizer>
-        {({ height, width }) => (
+        {({ height, width }: { [k: string]: number}) => (
           <List
             className="List"
             height={height}
