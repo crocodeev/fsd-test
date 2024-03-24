@@ -7,11 +7,11 @@ export const postApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: "https://jsonplaceholder.typicode.com/"}),
     endpoints: (build) => ({
         getAllPosts: build.query<TPost[], TGetAllPosts>({
-            query: ({limit, start}) => ({
+            query: ({limit, offset}) => ({
                 url: '/posts',
                 params: {
                     _limit: limit,
-                    _start: start,
+                    _start: offset,
                 }
             })
         })

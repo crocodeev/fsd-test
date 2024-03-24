@@ -1,6 +1,6 @@
 type TGetAllPosts = {
     limit: number,
-    start: number
+    offset: number
 }
 
 export default TGetAllPosts

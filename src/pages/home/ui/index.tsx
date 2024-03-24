@@ -1,66 +1,49 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect,useCallback } from "react"
 import { useGetAllPostsQuery} from "src/entities/post/api/api"
 import Post from "src/widgets/ui/post/post"
+import { VariableSizeList as List } from 'react-window';
+import TPostProps from "src/widgets/model/props";
+ 
+// These row heights are arbitrary.
+// Yours should be based on the content of the row.
+
+const Item = ({ data, index, style }: TPostProps) => (
+  <Post  data={data} index={index} style={style}/>
+);
+
+const rowH = () => 200
 
 export const HomePage = () => {
 
-    
-    const [start, setStart] = useState(0)
-    const { data, error, isLoading } = useGetAllPostsQuery({ limit: 5, start: start})
-    const [isScrollDown, setIsScrollDown] = useState(false)
-    const [isScrollUp, setIsScrollUp] = useState(false)
+    const { data, error, isLoading, isFetching } = useGetAllPostsQuery({limit: 5, offset: 0})
+    const [offset, setOffset] = useState(0)
 
-    console.log(data)
+    const handleScroll = (event) => {
 
-    const scrollHandler = (event:any):void => {
-
-        if(event.target.documentElement.scrollTop<50){
-                setIsScrollUp(true)
-        }
-        if(event.target.documentElement.scrollHeight-event.target.documentElement.scrollTop-window.innerHeight<50){
-                setIsScrollDown(true)
-                console.log(setIsScrollDown);
-                
-                window.scrollTo(0,(event.target.documentElement.scrollHeight + event.target.documentElement.scrollTop));
-        }
-    }
-
-    useEffect(() => {
+        console.log(event);
         
-        if(isScrollDown){
-            setStart((previous) => {
-                return previous < 93 ? previous + 1 : previous
-            })
-            setIsScrollDown(false)
+        /*
+          if (event.target.clientHeight + event.target.scrollTop >= event.target.scrollHeight - 100 ) {
+            console.log("handle scroll");
+            
+            setOffset(offset + 1)
+          }*/
         }
-    }, [isScrollDown])
+       
+    console.log(data);
     
-    useEffect(() => {
-        if(isScrollUp){
-            setStart((previous) => {
-                return previous > 0 ? previous - 1 : previous
-            })
-            setIsScrollUp(false)
-        }
-    }, [isScrollUp])
-
-    
-    useEffect(() => {
-
-        document.addEventListener('scroll', scrollHandler)
-
-        return () => {
-          document.removeEventListener('scroll', scrollHandler)
-        }
-      },[])
-
-    return(
-        <ul>
-            {
-                data?.map((post, index) => {
-                    return <Post key={post.id} post={post} index={index}/>
-                }) 
-            }
-        </ul>
-    )
+    if(data){
+        return(
+            <List
+                height={150}
+                itemCount={1000}
+                itemSize={rowH}
+                width={300}
+                itemData={data}
+                onScroll={handleScroll}
+            >
+            {Item}
+            </List>
+        )
+    }
 }

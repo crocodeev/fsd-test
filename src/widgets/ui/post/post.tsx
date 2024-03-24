@@ -1,15 +1,13 @@
 import React, { FunctionComponent } from "react"
-import TPost from "src/entities/post/model/post";
+import TPostProps from "src/widgets/model/props"
 
-type TPostProps = {
-    post: TPost,
-    index: number
-}
 
-const Post = ({ post, index }: TPostProps) => {
+const Post = ({ data, index, style }: TPostProps) => {
+
+    const post = data?.[index]
     
     return(
-        <li key={post.id}>
+        <li key={post.id} style={style}>
             <label htmlFor="">{index + 1}</label>
             <h2>{post.title}</h2>
             <p>{post.body}</p>
