@@ -15,7 +15,7 @@ export const PostPage = () => {
     const post = data.find(item => item.id.toString() === id)
 
     if (!post) {
-        return 
+        return <h1>No Post Here</h1>
     }
     
     return(

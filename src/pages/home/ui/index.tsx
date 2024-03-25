@@ -1,8 +1,10 @@
-import React, { useState, useEffect,useCallback } from "react"
+import React, { useState } from "react"
 import { useGetAllPostsQuery} from "src/entities/post/api/api"
 import Post from "src/widgets/post/ui"
 import { Virtuoso } from "react-virtuoso"
 import { List } from "@mui/material"
+
+
 
 export const HomePage = () => {
 
@@ -11,10 +13,9 @@ export const HomePage = () => {
 
     if (error) {
        console.error(error)
-       return alert("Error, please ")
+       return (<h1>Error: information provided in console</h1>)
     }
 
-    
 
     const endReachedHandler = () => {
 
