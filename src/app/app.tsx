@@ -3,7 +3,5 @@ import Router from './router'
 
 
 export const App: FunctionComponent = () => (
-  <div>
     <Router />
-  </div>
 )
