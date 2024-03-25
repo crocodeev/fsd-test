@@ -1,9 +1,10 @@
 import React, { useState, useEffect,useCallback } from "react"
 import { useGetAllPostsQuery} from "src/entities/post/api/api"
 import Post from "src/widgets/ui/post"
-import { VariableSizeList as List, ListOnItemsRenderedProps, ListOnScrollProps } from 'react-window'
+import { VariableSizeList, ListOnItemsRenderedProps, ListOnScrollProps } from 'react-window'
 import TPostProps from "src/widgets/model/props"
 import AutoSizer from "react-virtualized-auto-sizer"
+import List from 'rc-virtual-list';
  
 // These row heights are arbitrary.
 // Yours should be based on the content of the row.
@@ -11,6 +12,7 @@ import AutoSizer from "react-virtualized-auto-sizer"
 const Item = ({ data, index, style }: TPostProps) => (
   <Post  data={data} index={index} style={style}/>
 );
+
 
 const rowH = () => 230
 
@@ -37,19 +39,17 @@ export const HomePage = () => {
     }
        
     return(
+        // remove
         <ul style={{ width: "100%", height: "800px", display: "flex", position: "absolute"}}>
         <AutoSizer>
-        {({ height, width }) => (
+        {({ height, width }: { [k: string]: number}) => (
           <List
-            className="List"
-            height={height}
-            itemCount={data?.length || 0}
-            itemSize={rowH}
-            width={width}
-            itemData={data}
-            onItemsRendered={itemRenderHandler}
+          height={height}
+          data={[1,2,3,4]}
+          itemKey="id"
+          itemHeight={300}
           >
-            {Item}
+            {index => <h1>{index}</h1>}
           </List>
         )}
       </AutoSizer>
