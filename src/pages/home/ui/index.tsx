@@ -1,19 +1,11 @@
-import React, { useState, useEffect,useCallback } from "react"
+import React, { useState } from "react"
 import { useGetAllPostsQuery} from "src/entities/post/api/api"
 import Post from "src/widgets/post/ui"
-import TPostProps from "src/widgets/post/model/props"
-import AutoSizer from "react-virtualized-auto-sizer"
 import { Virtuoso } from "react-virtuoso"
 import { List } from "@mui/material"
 // These row heights are arbitrary.
 // Yours should be based on the content of the row.
 
-const Item = ({ data, index, style }: TPostProps) => (
-  <Post  data={data} index={index} style={style}/>
-);
-
-
-const rowH = () => 230
 
 export const HomePage = () => {
 
@@ -22,10 +14,9 @@ export const HomePage = () => {
 
     if (error) {
        console.error(error)
-       return alert("Error, please ")
+       return (<h1>Error: information provided in console</h1>)
     }
 
-    
 
     const endReachedHandler = () => {
 
